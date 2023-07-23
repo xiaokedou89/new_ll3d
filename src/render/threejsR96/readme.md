@@ -1,0 +1,2 @@
+原乐乐三维云使用r96版本的threejs，已去除objectLoader
+在迁移程序中需要使用r96版本的再进行重构建json格式

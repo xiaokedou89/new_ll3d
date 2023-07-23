@@ -1,0 +1,312 @@
+@import '@/styles/variable.scss';
+:root {
+  --color--main: #2489f3; // 主题色
+  --color--ori: #e99605;
+  --color--navbg: #222; // 导航栏等的背景色
+  --color--mainbg: #2d2e31; // 主体背景色
+  --color--mainborder: #2a2d2f; // 主体边框色
+  --color--fontMain: #fff; // 主体字体颜色
+  --color--fontMainDark: rgba(34, 34, 34, .81);
+  --color--adaptbg: #1D1F20; // 移动端侧边栏背景色
+  --color--adaptborder: #333; // 移动端侧边栏边框色
+  --color--footerborder: #505050;
+  --color--fontFooter: #a2a2a2;
+  --color--maskBg: rgba(255, 255, 255, .3);
+  --color--dialogInnerBorder: #e5e5e5;
+  --color--dialogTitle: #888;
+  --color--dialogBody: #efefef;
+}
+
+@mixin scrollBar {
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: #333;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    width: 6px;
+    background-color: #333;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+// 初始化默认样式
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--color--fontMainDark);
+  // color: $fontMainDark;
+  -webkit-text-size-adjust: none;
+	-moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: $color-dark;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  font-size: 10px;
+  // 网站置灰
+  // filter: grayscale(.95);
+}
+body {
+  width: 100%;
+  height: 100%;
+  background-color: $color-mainBg;
+  border: 0;
+  margin: 0 auto;
+  overflow: auto;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.42857143;
+}
+
+#app {
+  height: 100%;
+}
+
+h1, h2, h3, h4, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+a:hover {
+  color: $color-main;
+  // color: $main;
+}
+div:focus {
+  outline: none;
+}
+ul, li {
+  list-style: none;
+}
+i {
+  font-style: normal;
+}
+img {
+  vertical-align: middle;
+}
+// 添加默认类
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+.m_l10 {
+  margin-left: 10px;
+}
+.m_l5 {
+  margin-left: 5px;
+}
+.flex-align {
+  display: flex;
+  align-items: center;
+}
+.el-tooltip-pop {
+  max-width: 150px;
+}
+
+// 默认按钮
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  color: $color-fontMain;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  min-width: 60px;
+  height: 32px;
+}
+.btn:hover {
+  background-color: $color-second;
+  color: $color-adaptBorder;
+}
+.btn:active {
+  background-color: $color-second;
+  color: $color-adaptBorder;
+}
+.btn[disabled] {
+  background: $color-second;
+  color: $color-adaptBorder;
+  cursor: not-allowed;
+}
+
+// 默认确定按钮
+.confirmBtn {
+  background-color: $color-main;
+}
+.oriBtn {
+  background-color: $color-ori;
+}
+// 默认取消按钮
+.cancelBtn {
+  color: $color-fontMainDark;
+}
+
+// 公共适配-宽度
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+.container-padding {
+  box-sizing: border-box;
+  padding: 0 15px;
+}
+
+.main {
+  box-sizing: border-box;
+}
+// 导航栏适配的宽度: min-width: 900以上 height 60px
+// 导航栏适配的宽度: max-width: 900一下 height 44px
+// 有导航栏下面的页面，底下要使用.main
+// 超大屏和中型屏
+@media (min-width: 992px) {
+  .container {
+    width: 90%;
+  }
+}
+
+// 小屏
+@media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    width: 96%;
+  }
+}
+// 适配container-padding
+@media (max-width: 801px) {
+  .container-padding {
+    padding: 0;
+  }
+}
+// 适配main配合navBar
+@media (min-width: 900px) {
+  .main {
+    padding-top: 60px;
+  }
+}
+@media (max-width: 900px) {
+  .main {
+    padding-top: 44px;
+  }
+}
+
+// 全局动画
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes close {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+// 全局动画类
+// 从display:none到显示的透明度过渡动画样式
+.aniShowOpt {
+  animation: show 500ms linear 1;
+}
+
+.aniCloseOpt {
+  animation: close 3000ms linear 1;
+}
+
+// 模型热点div类名
+.hot-div {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  // background-color: rgba(103, 2, 2, .765);
+  background-color: rgba(103, 2, 2);
+  cursor: pointer;
+  position: absolute;
+  z-index: 999999;
+  transition: border-radius .25s linear;
+  &::before {
+    display: block;
+    content: "";
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #fff;
+    animation: scale 1.5s linear infinite;
+  }
+  &::after {
+    display: none;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    content: attr(data-after);
+    position: absolute;
+    white-space: nowrap;
+    height: 25px;
+    padding-right: 10px;
+    line-height: 25px;
+    background-color: rgba(103, 2, 2);
+    right: 0;
+    top: 0;
+    transform: translateX(100%);
+    transition: display .25s linear;
+    z-index: -1;
+  }
+}
+.hot-div:hover {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  &::after {
+    display: inline-block;
+    transition: display .25s linear;
+  }
+}
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

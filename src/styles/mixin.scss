@@ -1,0 +1,604 @@
+@mixin flex-just-spacearound {
+  display: flex;
+  justify-content: space-around;
+}
+@mixin flex-align-center {
+  display: flex;
+  align-items: center;
+}
+@mixin flex-just-spacebetween {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+@mixin flex-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+@mixin f-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+// 修改默认滚动条样式
+@mixin scrollBar {
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: #333;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    width: 6px;
+    background-color: #333;
+  }
+}
+
+// 渲染部分el-tabs下 每个el-tab-pane中的总容器.tabs-item-container
+@mixin tabs-item-container {
+  // background-color: rgb(100, 100, 100);
+  // box-shadow: 1px 1px 1px 1px rgba(34, 34, 34, 0.5);
+  height: 100%;
+}
+
+// 渲染部分的侧边栏中的折叠栏修改
+@mixin el-collapse {
+  // 折叠栏
+  .el-collapse {
+    color: #fff;
+    border: 0;
+    // 折叠栏--头部
+    .el-collapse-item::v-deep .el-collapse-item__header {
+      color: #fff;
+      background-color: rgb(100, 100, 100);
+      height: 30px;
+      border-bottom: 1px solid #000;
+      padding-left: 5px;
+    }
+
+    // 折叠栏--内容
+    .el-collapse-item::v-deep .el-collapse-item__wrap {
+      background-color: rgba(151, 149, 149, 0.8);
+      border-bottom: 1px solid #000;
+      border-left: 1px solid #000;
+      // 折叠栏内容子容器
+      .el-collapse-item__content {
+        color: #fff;
+        // 为了蒙层去掉el-collapse-item__content底部的25padding
+        padding: 0;
+         // 内部自定义总容器---折叠栏主体
+        .collapse-item-container {
+          position: relative;
+          color: #fff;
+          // 为了蒙层修改el-collapse-item__content底部的25padding
+          padding-bottom: 25px;
+          // 蒙层div
+          // 折叠栏对应开关
+          // 物理光选择头部
+          // 物理光选择主体
+        }
+      }
+    }
+  }
+}
+
+// 灯光--物理光--头部(单选三个对象部分)
+@mixin phy-header {
+  // 物理光选择头部
+  .phy-header {
+    padding-top: 5px;
+    // 标题span
+    span.phy-header-label {
+      display: inline-block;
+      padding-left: 5px;
+    }
+    // 物理光单选三个对象部分
+    .phy-header-body {
+      width: 95%;
+      margin: 5px auto 0;
+      border: 1px solid #000;
+      border-radius: 6px;
+      overflow: hidden;
+      // 单选三个对象的每一个单选框
+      &::v-deep label.el-radio {
+        display: block;
+        width: 100%;
+        height: 25px;
+        // 单选圆圈
+        span.el-radio__input {
+          display: none;
+        }
+        // 单选文字
+        span.el-radio__label {
+          color: #fff;
+          display: block;
+          width: 100%;
+          height: 25px;
+          line-height: 25px;
+          background-color: rgba(59, 59, 59);
+        }
+        span.el-radio__label:hover {
+          background-color: rgba(59, 59, 59, .5);
+        }
+      }
+      &::v-deep label.el-radio.is-checked span.el-radio__label {
+        background-color: rgba(151, 149, 149, 0.8);
+        color: #2489f3;
+      }
+    }
+  }
+}
+
+// 渲染部分侧边栏修改el-radio单选框默认样式，需要外层加单独类
+@mixin render-collapse-select-radio {
+  width: 95%;
+  display: flex;
+  margin: 0 auto 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  // 单选框每项
+  &::v-deep label.el-radio {
+    flex: 1;
+    height: 30px;
+    margin: 0;
+    // 单选圆圈
+    span.el-radio__input {
+      display: none;
+    }
+    // 单选文字
+    span.el-radio__label {
+      position: relative;
+      padding: 0;
+      display: block;
+      height: 30px;
+      line-height: 30px;
+      color: #fff;
+      text-align: center;
+      background-color: rgba(59, 59, 59);
+    }
+    // 单选文字悬停
+    span.el-radio__label:hover {
+      background-color: rgba(59, 59, 59, .5);
+    }
+  }
+  // 单选框每项--选中
+  &::v-deep label.el-radio.is-checked span.el-radio__label {
+    background-color: #0c0c0c;
+    color: #2489f3;
+  }
+}
+
+// 渲染部分侧边栏修改el-color-picker默认样式
+@mixin render-collapse-color-picker {
+  // 颜色选择
+  .el-color-picker {
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+    &::v-deep div.el-color-picker__trigger {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #333;
+      background: #595959;
+    }
+  }
+}
+
+// 渲染部分侧边栏修改调节位置的三个el-input-number默认样式
+@mixin render-position-input-number {
+  .el-input-number {
+    width: 30%;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    // 输入区域
+    &::v-deep .el-input__inner {
+      padding-left: 20%;
+      padding-right: 20%;
+      height: 30px;
+      border: none;
+      background-color: #333;
+      color: #fff;
+    }
+    // 左右加减按钮
+    &::v-deep .el-input-number__decrease,
+    &::v-deep .el-input-number__increase {
+      width: 20%;
+      height: 30px;
+      color: #fff;
+      border: none;
+      top: 0;
+      background-color: rgba(51, 51, 51, .5);
+    }
+    &::v-deep .el-input-number__decrease {
+      left: 0;
+    }
+    &::v-deep .el-input-number__increase {
+      right: 0;
+    }
+    &::v-deep .el-input-number__decrease:hover,
+    &::v-deep .el-input-number__increase:hover {
+      background-color: #888;
+    }
+  }
+}
+
+// 调节光位置旁边的问号图标样式
+@mixin render-position-icon {
+  // 位置旁边的问号图标
+  i.light-position-label-icon {
+    position: absolute;
+    top: 2px;
+    right: -18px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: url('~@/assets/position-icon.png') no-repeat;
+    background-color: #fff;
+    cursor: pointer;
+  }
+}
+
+// 渲染侧边栏el-silder文字同行
+@mixin render-slider-group-space {
+  .el-slider-group {
+    display: flex;
+    width: 75%;
+    align-items: center;
+    margin-left: 8px;
+    // 滑块
+    .el-slider {
+      width: 100%;
+      padding: 0 6px;
+    }
+    .el-input-number {
+      margin-left: 4px;
+    }
+    &::v-deep .el-input-number {
+      line-height: 30px;
+    }
+    &::v-deep .el-input-number span {
+      display: none;
+    }
+    &::v-deep .el-input__inner {
+      background-color: #333;
+      font-size: 12px;
+      width: 40px;
+      height: 28px;
+      padding: 4px;
+      color: #fff;
+    }
+  }
+}
+// 渲染侧边栏el-silder文字上下
+@mixin render-slider-group-align {
+  .el-slider-group {
+    width: 100%;
+    padding-right: 12px;
+    display: flex;
+    align-items: center;
+    // 滑块
+    .el-slider {
+      width: 100%;
+      padding: 0 10px;
+    }
+    .el-input-number {
+      width: 12%;
+    }
+
+    &::v-deep .el-input-number {
+      line-height: 30px;
+    }
+    &::v-deep .el-input-number span {
+      display: none;
+    }
+    &::v-deep .el-input__inner {
+      background-color: #333;
+      font-size: 12px;
+      width: 40px;
+      height: 28px;
+      padding: 4px;
+      color: #fff;
+    }
+  }
+}
+
+// 渲染侧边栏的el-switch在switch-container外层下修改默认样式
+@mixin render-switch {
+  .switch-container::v-deep span.el-switch__label span {
+    color: #000;
+    font-size: 10px;
+  }
+  .switch-container::v-deep span.el-switch__label.is-active span {
+    color: #fff;
+  }
+  .switch-container::v-deep span.el-switch__core {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #343434;
+  }
+  .switch-container::v-deep .el-switch.is-checked span.el-switch__core {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #ccc;
+  }
+  .switch-container::v-deep span.el-switch__core::after {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #595959;
+    width: 16px;
+    top: 0;
+  }
+}
+
+// 渲染侧边栏按钮样式
+@mixin render-button {
+  // 调节位置和旋转按钮样式
+  button {
+    display: block;
+    margin-top: 8px;
+    width: 100%;
+    height: 30px;
+    color: #fff;
+    background-color: rgba(204, 204, 204, .5);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: rgba(204, 204, 204, .8);
+    text-shadow: 0 0 10px #fff;
+    font-style: italic;
+    font-weight: 700;
+    box-shadow: 0 0 5px #fff;
+  }
+  button:active {
+    background-color: #ccc;
+    font-weight: 500;
+    font-style: normal;
+    box-shadow: none;
+  }
+  button[disabled] {
+    cursor: not-allowed;
+  }
+  button[disabled]:hover {
+    background-color: rgba(204, 204, 204, .5);
+    text-shadow: none;
+    font-style: normal;
+    font-weight: 500;
+    box-shadow: none;
+  }
+}
+
+// 渲染侧边栏蒙层默认样式
+@mixin render-mantle {
+  .mantle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 1999;
+    cursor: not-allowed;
+  }
+}
+
+// 渲染侧边栏单独修改使用el-input-number的公共样式
+@mixin render-input-number {
+  .el-input-number {
+    width: 12%;
+    line-height: 30px;
+    &::v-deep span {
+      display: none;
+    }
+    &::v-deep .el-input__inner {
+      background-color: #333;
+      font-size: 12px;
+      width: 40px;
+      height: 28px;
+      padding: 4px;
+      color: #fff;
+    }
+  }
+}
+
+// 渲染侧边栏图片使用和展示样式
+@mixin image-show {
+  .image-show {
+    box-sizing: border-box;
+    width: 100%;
+    height: 174px;
+    padding: 10px;
+    border: 1px solid rgb(59, 59, 59);
+    border-radius: 4px;
+    background-color: rgba(59, 59, 59, .5);
+    .image-show-has,
+    .image-show-none {
+      width: 100%;
+      height: 100%;
+      border-radius: 2px;
+      border: 1px dashed rgb(59, 59, 59);
+      overflow: hidden;
+    }
+    .image-show-has {
+      div.el-image {
+        width: 100%;
+        height: 100%;
+      }
+      div.el-image::v-deep img {
+        -webkit-user-drag: none;
+      }
+    }
+  }
+}
+
+// 渲染页面上传及选择图片修改el-dialog弹框默认样式
+@mixin el-dialog {
+  .upload-img-dialog::v-deep .el-dialog__header {
+    height: 30px;
+    width: 100%;
+    padding: 0;
+    background-color: #363636;
+    // 弹框标题
+    span.el-dialog__title {
+      display: inline-block;
+      width: 100%;
+      height: 30px;
+      text-align: center;
+      font-size: 16px;
+      line-height: 30px;
+      color: #fff;
+    }
+    .el-dialog__headerbtn {
+      top: 5px;
+      right: 5px;
+    }
+  }
+  .upload-img-dialog::v-deep .el-dialog {
+    background-color: #909090;
+    .el-dialog__body {
+      padding: 0;
+      padding-top: 10px;
+      .upload-dialog-body {
+        width: 100%;
+        padding: 0 10px;
+        // 选择图片框
+        .upload-image-select {
+          width: 100%;
+          background-color: rgba(255, 255, 255, .3);
+          border: 1px dashed #fff;
+          border-radius: 4px;
+          height: 300px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          position: relative;
+          overflow-y: auto;
+          // 没有单选框时的文字提示框
+          .upload-image-select-title {
+            width: 100%;
+            height: 298px;
+            line-height: 298px;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #fff;
+            // background-color: pink;
+            font-size: 18px;
+            font-weight: 700;
+          }
+          .el-radio-item-container {
+            width: 200px;
+            height: 150px;
+            position: relative;
+            margin: 5px;
+          }
+          .el-radio-item-container:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 0 0 10px #fff;
+          }
+          // 单选框每项的容器label
+          label.el-radio {
+            width: 200px;
+            height: 150px;
+            border: 3px solid #fff;
+            border-radius: 4px;
+            // margin: 5px;
+            background-color: #3b3b3b;
+            // 去掉单选框的小圆点
+            span.el-radio__input {
+              display: none;
+            }
+            // 图片框
+            span.el-radio__label {
+              width: 100%;
+              height: 100%;
+              padding: 0;
+              display: inline-block;
+              div.el-image {
+                width: 100%;
+                height: 100%;
+              }
+              div.el-image::v-deep img {
+                -webkit-user-drag: none;
+              }
+            }
+          }
+          // 单选框每项hover
+          // label.el-radio:hover {
+          //   transform: translate(-1px, -1px);
+          //   box-shadow: 0 0 10px #fff;
+          // }
+          // 单选框选中
+          label.el-radio.is-checked {
+            border: 3px solid #2489f3;
+            box-shadow: 0 0 5px #2489f3;
+            transform: translate(-2px, -2px);
+          }
+        }
+        // 修改滚动条默认样式
+        .upload-image-select::-webkit-scrollbar {
+          width: 10px;
+          background: rgba(34, 34, 34, 0.2);
+        }
+        .upload-image-select::-webkit-scrollbar-thumb {
+          width: 9px;
+          background-color: rgba(255, 255, 255, 0.6);
+          border-radius: 4px;
+        }
+        // 上传部分
+        .image-upload {
+          margin-top: 10px;
+          button {
+            margin: 0;
+            width: 96px;
+            height: 30px;
+            padding: 0;
+            span {
+              display: inline-block;
+              width: 100%;
+              height: 100%;
+              line-height: 30px;
+            }
+          }
+          button.el-button:hover {
+            color: #fff;
+          }
+        }
+      }
+      // 底部取消，确定按钮部分
+      .upload-dialog-footer {
+        width: 100%;
+        padding: 10px 5px 10px;
+        display: flex;
+        justify-content: space-around;
+        button {
+          width: 45%;
+        }
+      }
+    }
+  }
+  
+  i.del-select-image {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: url('~@/assets/del-select-image.png') no-repeat 2px 2px;
+  
+    background-color: #fff;
+    z-index: 999;
+    cursor: pointer;
+  }
+}
